@@ -20,21 +20,22 @@ class AiredType(graphene.ObjectType):
 # Definición del tipo de anime
 class AnimeType(graphene.ObjectType):
     #Información básica
-    mal_id = graphene.Int()
-    title = graphene.String()
-    synopsis = graphene.String()
-    genres = graphene.List(graphene.String)
-    episodes = graphene.Int()
-    image_url = graphene.String()
+    mal_id = graphene.Int() #id de MyAnimeList
+    title = graphene.String() # Titulo del anime
+    synopsis = graphene.String() # Sinopsis del anime
+    genres = graphene.List(graphene.String) # Géneros del anime
+    episodes = graphene.Int() # Número de episodios
+    type = graphene.String() # Tipo de anime (TV, Movie, etc.)
+    image_url = graphene.String() # URL de la imagen del anime
 
     # Información adicional
-    aired = graphene.Field(AiredType)
-    rating = graphene.String()
-    score = graphene.Float()
-    rank = graphene.Int()
-    status = graphene.String()
-    airing = graphene.Boolean()
-    trailer_url = graphene.String()
+    aired = graphene.Field(AiredType) # Fechas de emisión
+    rating = graphene.String() # Calificación del anime
+    score = graphene.Float() # Puntuación del anime
+    rank = graphene.Int() # Ranking del anime
+    status = graphene.String() # Estado del anime (Finalizado, En emisión, etc.)
+    airing = graphene.Boolean() # Si está en emisión
+    trailer_url = graphene.String() # URL del tráiler
 
     def resolve_image_url(parent, info):
         return parent.get("images", {}).get("jpg", {}).get("image_url")
