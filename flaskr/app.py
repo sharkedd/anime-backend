@@ -3,8 +3,8 @@ from flask_graphql import GraphQLView
 from .schemas.schema import schema
 from mongoengine import *
 import os
-app = Flask(__name__)
 
+app = Flask(__name__)
 
 try:
     connect(host=os.getenv('MONGO_URI'))
