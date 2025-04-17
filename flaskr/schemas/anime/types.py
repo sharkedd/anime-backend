@@ -44,5 +44,22 @@ class AnimeType(graphene.ObjectType):
     
     def resolve_genres(parent, info):
         return [genre.get("name") for genre in parent.get("genres", [])]
+    
+class FavoriteAnimeType(graphene.ObjectType):
+    mal_id = graphene.Int() # ID de MyAnimeList
+    title = graphene.String() # Título del anime
+    synopsis = graphene.String() # Sinopsis del anime
+    genres = graphene.List(graphene.String) # Géneros del anime
+    episodes = graphene.Int() # Número de episodios
+    type = graphene.String() # Tipo de anime (TV, Movie, etc.)
+    image_url = graphene.String() # URL de la imagen del anime
+
+    aired = graphene.Field(AiredType) # Fechas de emisión
+    rating = graphene.String() # Calificación del anime
+    score = graphene.Float() # Puntuación del anime
+    rank = graphene.Int() # Ranking del anime
+    status = graphene.String() # Estado del anime (Finalizado, En emisión, etc.)
+    airing = graphene.Boolean() # Si está en emisión
+    trailer_url = graphene.String() # URL del tráiler
 
 
