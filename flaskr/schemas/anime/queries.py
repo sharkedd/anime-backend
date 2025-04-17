@@ -25,7 +25,7 @@ class AnimeQueries(graphene.ObjectType):
     def resolve_buscar_anime(self, info, nombre):
         params = {"q": nombre}
         resultado = buscar_anime_avanzado(params)
-        return resultado.get("data", [])
+        return resultado
 
     # Resolver: busqueda_avanzada
     def resolve_busqueda_avanzada(self, info, nombre=None, tipo=None, estado=None, min_score=None, genero=None):
@@ -36,9 +36,9 @@ class AnimeQueries(graphene.ObjectType):
         if genero: params["genres"] = genero  # En Jikan se usa el ID de género
 
         resultado = buscar_anime_avanzado(params)
-        return resultado.get("data", [])
+        return resultado
 
     # Resolver: en_emision
     def resolve_en_emision(self, info):
         resultado = buscar_anime_avanzado({"status": "airing"})
-        return resultado.get("data", [])
+        return resultado

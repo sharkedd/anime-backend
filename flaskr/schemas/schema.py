@@ -12,6 +12,7 @@ class Query(
 
 class Mutation(graphene.ObjectType): # Clase base de Graphene para definir el esquema)
     SaveAnime = SaveAnime.Field()  # Define la mutación para guardar anime
+    DeleteAnime = RemoveAnimeFromFavorite.Field()  # Define la mutación para eliminar anime
     CreateUser = CreateUser.Field()  # Define la mutación para crear usuario
     Login = LoginUser.Field()  # Define la mutación para iniciar sesión
     

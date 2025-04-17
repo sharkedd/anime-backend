@@ -11,7 +11,7 @@ def buscar_anime_por_id(mal_id):
         respuesta = requests.get(url)
         respuesta.raise_for_status()
         data = respuesta.json()
-        return data
+        return data.get("data", {})
     except requests.RequestException as e:
         return {"error": "Error al llamar a la API de Jikan", "detalle": str(e)}
 
@@ -33,7 +33,7 @@ def buscar_anime_avanzado(params):
             print(anime.get("type"))
             print()
 
-        return data
+        return data.get("data", [])
     except requests.RequestException as e:
         return {"error": "Error al llamar a la API de Jikan", "detalle": str(e)}
     
