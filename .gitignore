@@ -31,3 +31,4 @@ instance/
 Thumbs.db
 
 to-do.txt
+.coverage
