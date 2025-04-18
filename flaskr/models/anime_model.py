@@ -24,4 +24,12 @@ class Anime(Document):
     trailer_url = StringField()  # URL del tráiler
 
     user = ReferenceField(User, required=True)  # Referencia al usuario que guardó el anime
-    meta = {'collection': 'anime'} # Nombre de la colección en MongoDB
+    meta = {
+    'collection': 'anime',
+    'indexes': [
+        {
+            'fields': ['mal_id', 'user'],
+            'unique': True
+        }
+    ]
+}

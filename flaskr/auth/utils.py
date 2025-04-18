@@ -1,4 +1,4 @@
-import jwt
+import jwt as pyjwt
 import datetime
 import os
 from dotenv import load_dotenv
@@ -12,15 +12,15 @@ def generate_token(usuario_id):
         "iat": datetime.datetime.now(datetime.timezone.utc),  # emisión
         "exp": datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=1),  # expiración
     }
-    token = jwt.encode(payload, SECRET_KEY, algorithm="HS256") # Se utiliza el algoritmo HS256 para firmar el token
+    token = pyjwt.encode(payload, SECRET_KEY, algorithm="HS256") # Se utiliza el algoritmo HS256 para firmar el token
     return token
 
 def verify_token(token):
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        payload = pyjwt.decode(token, SECRET_KEY, algorithms=["HS256"])
         return payload["user_id"]
-    except jwt.ExpiredSignatureError:
+    except pyjwt.ExpiredSignatureError:
         return None
-    except jwt.InvalidTokenError:
+    except pyjwt.InvalidTokenError:
         return None
 

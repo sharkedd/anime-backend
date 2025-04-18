@@ -38,6 +38,9 @@ class SaveAnime(graphene.Mutation):
             )
 
             user = User.objects(id=user_id).first() # Busca el usuario por ID
+            if not user:
+                return SaveAnime(success=False, message="Usuario no encontrado")
+
             anime = Anime(
                 mal_id=anime_data.get("mal_id"),
                 title=anime_data.get("title"),
