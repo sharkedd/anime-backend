@@ -3,8 +3,10 @@ from flask_graphql import GraphQLView
 from .schemas.schema import schema
 from mongoengine import *
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, resources={r"/graphql": {"origins": "*"}})  # Permite solicitudes desde cualquier origen
 
 try:
     connect(host=os.getenv('MONGO_URI'))
